@@ -3,120 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SICEUDO</title>
+    <title>SICEUDO - Alejandro</title>
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #ddd; }
-        .white-bg { background-color: #fff; max-width: 500px; margin: 20px auto; min-height: 100vh; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
-        .blue-header { background-color: #004587; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; border-bottom: 4px solid #f0ad4e; }
-        .content { padding: 15px; }
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+        .container { max-width: 850px; margin: 20px auto; background: white; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; }
+        .header { text-align: center; border-bottom: 3px solid #005596; padding-bottom: 10px; margin-bottom: 20px; }
+        .header h1 { color: #005596; margin: 0; font-size: 24px; }
         
-        /* Datos Estudiante */
-        .estudiante-box { border: 1px solid #ccc; padding: 10px; font-size: 12px; margin-bottom: 20px; line-height: 1.5; }
-        .blue-text { color: #004587; font-weight: bold; }
+        .cuadro-datos { background: #f9f9f9; border: 1px solid #ccc; padding: 15px; margin-bottom: 25px; border-radius: 5px; font-size: 13px; }
+        .label-dato { font-weight: bold; color: #005596; margin-right: 5px; }
 
-        /* Títulos */
-        .bar-title { border-left: 5px solid #004587; background: #f2f2f2; padding: 5px 10px; font-size: 13px; color: #004587; font-weight: bold; margin: 15px 0; }
+        /* EL MENÚ DE CUADROS DE COLORES (EL BUENO) */
+        .menu-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .menu-box { width: 130px; height: 130px; color: white; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; padding: 10px; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .menu-box:hover { transform: scale(1.05); }
+        .menu-icon { font-size: 30px; margin-bottom: 10px; }
 
-        /* BOTONES COLORES */
-        .btns { display: flex; gap: 4px; margin-bottom: 15px; }
-        .btn { flex: 1; padding: 12px 2px; text-align: center; color: white; font-weight: bold; font-size: 10px; border-radius: 3px; }
-        .btn-1 { background-color: #d35400; }
-        .btn-2 { background-color: #8bc34a; }
-        .btn-3 { background-color: #00bcd4; }
+        .bg-azul { background: #1565c0; }
+        .bg-verde { background: #43a047; }
+        .bg-naranja { background: #ef6c00; }
+        .bg-rojo { background: #c62828; }
+        .bg-morado { background: #7b1fa2; }
+        .bg-cyan { background: #00acc1; }
 
-        /* NOTA AMARILLA */
-        .alert-yellow { background-color: #ffffcc; border: 1px solid #f0ad4e; padding: 10px; font-size: 13px; border-radius: 4px; margin-bottom: 20px; }
-
-        /* TABLA */
-        .t-notas { width: 100%; border-collapse: collapse; font-size: 11px; }
-        .t-notas th { background-color: #005596; color: white; padding: 6px; border: 1px solid #ccc; }
-        .t-notas td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-        .p-head { background-color: #e3f2fd; color: #004587; font-weight: bold; text-align: left !important; }
-
-        /* RESUMEN */
-        .res-head { background-color: #ccc; font-weight: bold; text-align: center; padding: 4px; border: 1px solid #999; margin-top: 20px; font-size: 12px; }
-        .t-res { width: 100%; border-collapse: collapse; font-size: 11px; text-align: center; }
-        .t-res td { padding: 5px; border-bottom: 1px solid #ccc; }
-
-        .prom { text-align: center; font-weight: bold; font-size: 14px; margin: 15px 0; }
-        .footer-banner { background-color: #ffff00; border: 1px solid #f0ad4e; padding: 8px; text-align: center; font-weight: bold; font-size: 10px; }
+        /* TABLA DE NOTAS */
+        .tabla-prosecucion { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 20px; }
+        .tabla-prosecucion th { background: #005596; color: white; padding: 10px; border: 1px solid #ddd; }
+        .tabla-prosecucion td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        .periodo-row { background: #e3f2fd; color: #005596; font-weight: bold; text-align: left !important; }
         
-        #login { padding: 50px 20px; text-align: center; background: white; height: 100vh; }
-        #page { display: none; }
+        #main_content, #vista_prosecucion { display: none; }
     </style>
 </head>
 <body>
 
-<div class="white-bg">
-    <div id="login">
-        <div class="blue-header" style="margin-bottom: 40px; border:none;">SICEUDO - NÚCLEO ANZOÁTEGUI</div>
-        <h3>Control de Acceso</h3>
-        <input type="text" id="ci" placeholder="Usuario (Cédula)" style="padding: 10px; width: 80%; border: 1px solid #ccc; margin-bottom: 10px;"><br>
-        <input type="password" placeholder="Clave" style="padding: 10px; width: 80%; border: 1px solid #ccc; margin-bottom: 15px;"><br>
-        <button onclick="acceder()" style="padding: 12px 40px; background: #005596; color: white; border: none; font-weight: bold; border-radius: 4px;">Entrar</button>
+<div class="container">
+    <div class="header">
+        <h1>SICEUDO - NÚCLEO ANZOÁTEGUI</h1>
     </div>
 
-    <div id="page">
-        <div class="blue-header">SICEUDO</div>
-        <div class="content">
-            <div class="estudiante-box">
-                <span class="blue-text">Nro. de Cédula:</span> 32131419 &nbsp; <span class="blue-text">Nombre:</span> ARREAZA ALEJANDRO<br>
-                <span class="blue-text">Núcleo:</span> ANZOÁTEGUI &nbsp; <span class="blue-text">Especialidad:</span> INGENIERÍA MECÁNICA
-            </div>
+    <div id="login_section" style="text-align: center; padding: 50px;">
+        <h3>Control de Acceso</h3>
+        <input type="text" id="user_input" placeholder="Cédula" style="padding: 10px; width: 220px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;"><br>
+        <button onclick="validarUDO()" style="padding: 10px 30px; background: #005596; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Entrar</button>
+    </div>
 
-            <div class="bar-title">Inscripción de Estudiantes Regulares</div>
-            <div class="btns">
-                <div class="btn btn-1">(1) LOGIN</div>
-                <div class="btn btn-2">(2) REGISTRO</div>
-                <div class="btn btn-3">(3) CONSTANCIA</div>
-            </div>
+    <div id="main_content">
+        <div class="cuadro-datos">
+            <span class="label-dato">Cédula:</span> 32131419 &nbsp;&nbsp;
+            <span class="label-dato">Nombre:</span> ARREAZA ALEJANDRO<br>
+            <span class="label-dato">Especialidad:</span> INGENIERÍA MECÁNICA
+        </div>
 
-            <div class="bar-title">Histórico de Calificaciones</div>
-            
-            <div style="text-align: right; margin-bottom: 10px;">
-                <button style="background: #d32f2f; color: white; border: none; padding: 5px 10px; border-radius: 3px; font-weight: bold; font-size: 11px;">📄 PDF</button>
-            </div>
+        <div class="menu-container">
+            <div class="menu-box bg-azul"><div class="menu-icon">🏠</div><span>Inscripción</span></div>
+            <div class="menu-box bg-verde" onclick="verNotas()"><div class="menu-icon">📊</div><span>Historial / Notas</span></div>
+            <div class="menu-box bg-naranja"><div class="menu-icon">📄</div><span>Solicitudes</span></div>
+            <div class="menu-box bg-rojo"><div class="menu-icon">📑</div><span>Constancias</span></div>
+            <div class="menu-box bg-morado"><div class="menu-icon">🛠️</div><span>Servicios</span></div>
+            <div class="menu-box bg-cyan"><div class="menu-icon">🗝️</div><span>Clave</span></div>
+        </div>
 
-            <table class="t-notas">
-                <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
-                <tr class="p-head"><td colspan="5">Periodo: 2023-3</td></tr>
-                <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
-                <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
-                <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
-                <tr class="p-head"><td colspan="5">Periodo: 2024-3</td></tr>
-                <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
-                <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
-                <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
-                <tr class="p-head"><td colspan="5">Periodo: 2025-3</td></tr>
-                <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
-                <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
-                <tr><td>2025-3</td><td>0082833</td><td>INTRO. A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
+        <div id="vista_prosecucion">
+            <h3 style="border-left: 5px solid #005596; background: #f8f8f8; padding: 10px;">Histórico de Calificaciones</h3>
+            <table class="tabla-prosecucion">
+                <thead><tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr></thead>
+                <tbody>
+                    <tr class="periodo-row"><td colspan="5">Periodo: 2023-3</td></tr>
+                    <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
+                    <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
+                    <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
+                    <tr class="periodo-row"><td colspan="5">Periodo: 2024-3</td></tr>
+                    <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
+                    <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
+                    <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
+                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-3</td></tr>
+                    <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
+                    <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
+                    <tr><td>2025-3</td><td>0082833</td><td>INTRO. A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
+                </tbody>
             </table>
 
-            <div class="res-head">Resumen Académico</div>
-            <table class="t-res">
-                <tr style="color: #666;">
-                    <td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td>
-                </tr>
-                <tr style="font-weight: bold;">
-                    <td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td>
-                </tr>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 11px; background: #eee; border: 1px solid #ccc; text-align: center;">
+                <tr style="background: #ddd; font-weight: bold;"><td colspan="7">Resumen Académico</td></tr>
+                <tr style="background: #fff;"><td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td></tr>
+                <tr style="background: #fff; font-weight: bold;"><td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td></tr>
             </table>
-
-            <div class="prom">Promedio Gral. de Notas: 5,12</div>
-            <div class="footer-banner">*** ESTE DOCUMENTO ES SOLO DE CARÁCTER INFORMATIVO ***</div>
+            <div style="text-align: center; font-weight: bold; margin-top: 15px;">Promedio Gral: 5,12</div>
         </div>
     </div>
 </div>
 
 <script>
-    function acceder() {
-        if(document.getElementById("ci").value === "32131419") {
-            document.getElementById("login").style.display = "none";
-            document.getElementById("page").style.display = "block";
+    function validarUDO() {
+        if(document.getElementById("user_input").value === "32131419") {
+            document.getElementById("login_section").style.display = "none";
+            document.getElementById("main_content").style.display = "block";
         } else { alert("Cédula incorrecta"); }
     }
+    function verNotas() {
+        document.getElementById("vista_prosecucion").style.display = "block";
+    }
 </script>
-
 </body>
 </html>
