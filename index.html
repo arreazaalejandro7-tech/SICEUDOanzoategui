@@ -7,21 +7,34 @@
     <style>
         body { font-family: Arial, Helvetica, sans-serif; margin: 0; background-color: #fff; font-size: 11px; color: #333; }
         header { background: linear-gradient(to bottom, #005596, #003366); color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f0ad4e; }
-        .wrapper { display: flex; flex-direction: row; width: 100%; }
+        .wrapper { display: flex; flex-direction: row; width: 100%; max-width: 1200px; margin: auto; }
         .col-left { width: 190px; background: #fff; padding: 10px; border-right: 1px dotted #ccc; flex-shrink: 0; }
-        .col-center { flex: 1; padding: 15px; border-right: 1px dotted #ccc; }
-        h3 { background: #f8f8f8; color: #005596; font-size: 10px; padding: 3px; border: 1px solid #ddd; margin-top: 10px; border-left: 4px solid #005596; }
-        .menu-real { list-style: none; padding: 0; margin: 5px 0; border: 1px solid #eee; }
-        .menu-real li { padding: 3px 5px; border-bottom: 1px solid #eee; color: #005596; cursor: pointer; }
-        .menu-tit { color: #005596; font-weight: bold; margin-top: 5px; padding-left: 5px; }
-        .cuadro-datos { border: 1px solid #ccc; padding: 8px; margin-top: 10px; background: #fff; font-size: 10px; line-height: 1.4; }
-        .label-dato { color: #666; display: block; margin-top: 4px; }
-        .valor-dato { font-weight: bold; color: #333; display: block; }
+        .col-center { flex: 1; padding: 15px; border-right: 1px dotted #ccc; min-height: 100vh; }
         
+        h3 { background: #f8f8f8; color: #005596; font-size: 10px; padding: 4px; border: 1px solid #ddd; margin-top: 10px; border-left: 4px solid #005596; }
+        
+        /* Menú Estudiante Lateral */
+        .menu-real { list-style: none; padding: 0; margin: 5px 0; border: 1px solid #eee; background: #f9f9f9; }
+        .menu-real li { padding: 4px 8px; border-bottom: 1px solid #eee; color: #005596; cursor: pointer; }
+        .menu-real li:hover { background: #fff; color: #d35400; }
+        .menu-tit { color: #005596; font-weight: bold; margin-top: 5px; padding-left: 5px; font-size: 10px; background: #eee; padding: 2px 5px; }
+
+        /* Cuadros Centrales */
+        .pasos-container { display: flex; justify-content: space-between; margin: 15px 0; }
+        .paso { width: 23%; padding: 15px 2px; text-align: center; color: white; font-weight: bold; font-size: 9px; border-radius: 2px; }
+        
+        /* Cuadro de Datos Estudiante Abajo a la Izquierda */
+        .cuadro-datos { border: 1px solid #ccc; padding: 8px; margin-top: 15px; background: #fcfcfc; font-size: 9px; line-height: 1.3; }
+        .label-dato { color: #666; display: block; margin-top: 2px; }
+        .valor-dato { font-weight: bold; color: #333; display: block; margin-bottom: 4px; }
+
+        .nota-amarilla { background: #ffffcc; border: 1px solid #e6db55; padding: 10px; margin: 10px 0; font-size: 10px; }
+
+        /* Tabla de Notas */
         .tabla-prosecucion { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 9px; }
-        .tabla-prosecucion th { background: #eee; border: 1px solid #ccc; padding: 4px; text-align: center; color: #005596; }
-        .tabla-prosecucion td { border: 1px solid #ccc; padding: 4px; text-align: center; }
-        .periodo-row { background: #f2f2f2; font-weight: bold; color: #005596; text-align: left !important; }
+        .tabla-prosecucion th { background: #005596; color: white; border: 1px solid #ccc; padding: 5px; }
+        .tabla-prosecucion td { border: 1px solid #ccc; padding: 5px; text-align: center; color: #333; }
+        .periodo-row { background: #f2f2f2; font-weight: bold; color: #005596; text-align: left !important; padding-left: 10px; }
 
         #menu_estudiante, #datos_estudiante_box, #vista_prosecucion { display: none; }
     </style>
@@ -36,16 +49,24 @@
 <div class="wrapper">
     <div class="col-left">
         <h3>Menú Principal</h3>
-        <ul id="menu_visitante" style="list-style:none; padding:0;"><li>Inicio</li></ul>
+        <div id="menu_visitante" style="padding: 5px; color: #666; background: #eee;">Inicio</div>
         
         <div id="menu_estudiante">
             <ul class="menu-real">
                 <li onclick="irInicio()">Inicio</li>
                 <div class="menu-tit">Admisión</div>
+                <li>» Actualizar Datos</li>
                 <li>» Inscripción Regulares</li>
+                <li>» Citas de Inscripción</li>
+                <div class="menu-tit">Reportes</div>
+                <li>» Taquilla DACE</li>
                 <div class="menu-tit">Consultas</div>
                 <li style="background: #fff8e1; font-weight: bold;" onclick="irProsecucion()">» Prosecución Académica</li>
+                <div class="menu-tit">Solicitudes</div>
+                <li>» Carnet</li>
+                <li>» Retiro Total</li>
                 <div class="menu-tit">Administración</div>
+                <li>» Cambiar Contraseña</li>
                 <li style="color:red; font-weight:bold;" onclick="location.reload()">Cerrar Sesión</li>
             </ul>
         </div>
@@ -53,17 +74,18 @@
         <div id="login_box">
             <h3>Iniciar Sesión</h3>
             <div style="border:1px solid #ccc; padding:8px; background:#fcfcfc;">
-                <label>Usuario:</label>
-                <input type="text" id="usuario_input" style="width:90%;">
-                <label>Clave:</label>
-                <input type="password" id="clave_input" style="width:90%; margin-bottom:5px;">
-                <center><button onclick="validarUDO()" style="font-size:10px;">Ingresar</button></center>
+                <label>Nro. de Cédula:</label>
+                <input type="text" id="user_in" style="width:90%; margin-bottom:5px;">
+                <label>Contraseña:</label>
+                <input type="password" id="pass_in" style="width:90%; margin-bottom:5px;">
+                <center><button onclick="entrarSiceudo()" style="font-size:10px; margin-top:5px; cursor:pointer;">Ingresar</button></center>
             </div>
         </div>
 
         <div id="datos_estudiante_box" class="cuadro-datos">
             <span class="label-dato">Nro. de Cédula</span><span class="valor-dato">32131419</span>
-            <span class="label-dato">Nombre</span><span class="valor-dato">ARREAZA ALEJANDRO</span>
+            <span class="label-dato">Nombre</span><span class="valor-dato">ARREAZA BARRETO LUIS ALEJANDRO</span>
+            <span class="label-dato">Núcleo</span><span class="valor-dato">ANZOÁTEGUI</span>
             <span class="label-dato">Especialidad</span><span class="valor-dato">1. INGENIERIA MECANICA (ACTIVO)</span>
         </div>
     </div>
@@ -71,11 +93,22 @@
     <div class="col-center">
         <div id="vista_inicio">
             <h3>Inscripción de Estudiantes Regulares</h3>
-            <p>Bienvenido al Sistema de Control de Estudios (SICEUDO).</p>
+            <div class="pasos-container">
+                <div class="paso" style="background: #d35400;">(1)<br>INICIA TU SESIÓN</div>
+                <div class="paso" style="background: #77b300;">(2)<br>REGISTRA TU INSCRIPCIÓN</div>
+                <div class="paso" style="background: #2aabd2;">(3)<br>IMPRIME TU CONSTANCIA</div>
+                <div class="paso" style="background: #e67e22;">(4)<br>CIERRA TU SESIÓN</div>
+            </div>
+            <h3>Inscripción Regular</h3>
+            <div class="nota-amarilla">
+                <strong>Nota:</strong> Semestre 3-2025 activo. La inscripción regular se dará según cita asignada.
+            </div>
+            <h3>Punto de Contacto</h3>
+            <p>Consultas: <b style="color:red;">compu.anzoategui@udo.edu.ve</b></p>
         </div>
 
         <div id="vista_prosecucion">
-            <h3>Histórico de Calificaciones</h3>
+            <h3>Prosecución Académica - Historial de Notas</h3>
             <table class="tabla-prosecucion">
                 <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
                 
@@ -107,19 +140,17 @@
                 <tr><td>2025-3</td><td>0082833</td><td>INTRO. PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
             </table>
 
-            <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 10px; background: #eee; border: 1px solid #ccc; text-align: center;">
-                <tr style="background: #ddd; font-weight: bold;"><td colspan="7">Resumen Académico</td></tr>
-                <tr><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td></tr>
-                <tr style="font-weight: bold;"><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td></tr>
-            </table>
-            <p style="text-align: center; font-weight: bold; margin-top: 10px;">Promedio Gral: 5,12</p>
+            <div style="background: #eee; padding: 10px; border: 1px solid #ccc; margin-top: 15px; text-align: center;">
+                <b>Resumen:</b> Inscritos: 17 | Aprobados: 14 | Reprobados: 3 | <b>Promedio: 5,12</b>
+                <div style="background: yellow; margin-top: 5px; font-weight: bold; font-size: 10px;">*** DOCUMENTO INFORMATIVO ***</div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function validarUDO() {
-        if(document.getElementById('usuario_input').value === "32131419") {
+    function entrarSiceudo() {
+        if(document.getElementById('user_in').value === "32131419") {
             document.getElementById('login_box').style.display = 'none';
             document.getElementById('menu_visitante').style.display = 'none';
             document.getElementById('menu_estudiante').style.display = 'block';
