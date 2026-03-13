@@ -3,140 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SICEUDO - Universidad de Oriente</title>
+    <title>SICEUDO - Sistema Integral de Control de Estudios</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 20px auto; background: white; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; }
-        .header { text-align: center; border-bottom: 3px solid #005596; padding-bottom: 10px; margin-bottom: 20px; }
-        .header h1 { color: #005596; margin: 0; font-size: 24px; }
-        .cuadro-datos { background: #f9f9f9; border: 1px solid #ccc; padding: 15px; margin-bottom: 25px; border-radius: 5px; font-size: 14px; }
-        .label-dato { font-weight: bold; color: #005596; margin-right: 5px; }
-
-        /* ESTILOS DEL MENÚ DE COLORES */
-        .menu-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .menu-box { width: 130px; height: 130px; color: white; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; padding: 10px; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .menu-box:hover { transform: scale(1.05); }
-        .menu-icon { font-size: 30px; margin-bottom: 10px; }
-
-        /* COLORES DEL MENÚ */
-        .bg-azul { background: #1565c0; }
-        .bg-verde { background: #43a047; }
-        .bg-naranja { background: #ef6c00; }
-        .bg-rojo { background: #c62828; }
-        .bg-morado { background: #7b1fa2; }
-        .bg-cyan { background: #00acc1; }
-
-        /* ESTILOS DE LA TABLA Y RESUMEN */
-        .tabla-prosecucion { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .tabla-prosecucion th { background: #005596; color: white; padding: 10px; }
-        .tabla-prosecucion td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        .periodo-row { background: #e3f2fd; color: #005596; font-weight: bold; text-align: left !important; }
+        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #fff; }
+        .header-azul { background-color: #004587; color: white; padding: 15px; font-size: 24px; font-weight: bold; text-align: center; border-bottom: 4px solid #f0ad4e; }
+        .container { padding: 15px; max-width: 100%; }
         
-        .btn-pdf { background-color: #d32f2f; color: white; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: bold; cursor: pointer; border: none; }
-        .nota-informativa { background: #fff9c4; padding: 12px; border: 1px solid #fbc02d; margin-top: 20px; font-size: 13px; border-radius: 4px; }
+        /* Cuadro de Datos Estudiante */
+        .info-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; font-size: 13px; line-height: 1.6; }
+        .label { color: #004587; font-weight: bold; }
+
+        /* Títulos con barra azul al lado */
+        .seccion-titulo { border-left: 5px solid #004587; background: #f8f8f8; padding: 5px 10px; font-size: 14px; color: #004587; font-weight: bold; margin: 15px 0; }
+
+        /* BOTONES DE COLORES ANCHOS */
+        .btn-container { display: flex; gap: 5px; margin-bottom: 20px; }
+        .btn-menu { flex: 1; padding: 12px 5px; text-align: center; color: white; font-weight: bold; font-size: 11px; border-radius: 4px; text-decoration: none; }
+        .btn-naranja { background-color: #d9534f; } /* (1) LOGIN */
+        .btn-verde { background-color: #8bc34a; }   /* (2) REGISTRO */
+        .btn-cyan { background-color: #00bcd4; }    /* (3) CONSTANCIA */
+
+        /* NOTA AMARILLA */
+        .nota-amarilla { background-color: #ffffcc; border: 1px solid #f0ad4e; padding: 15px; font-size: 13px; border-radius: 4px; margin-bottom: 20px; }
+
+        /* TABLA DE NOTAS */
+        .tabla { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+        .tabla th { background-color: #005596; color: white; padding: 8px; border: 1px solid #ccc; }
+        .tabla td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        .periodo-header { background-color: #e3f2fd; color: #004587; font-weight: bold; text-align: left !important; }
+
+        /* RESUMEN GRIS */
+        .resumen-tabla { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px; }
+        .resumen-header { background-color: #d3d3d3; font-weight: bold; text-align: center; padding: 5px; border: 1px solid #ccc; }
+        
+        .promedio { text-align: center; font-weight: bold; font-size: 16px; margin: 15px 0; }
+        .footer-nota { background-color: #ffff00; border: 1px solid #f0ad4e; padding: 10px; text-align: center; font-weight: bold; font-size: 11px; }
+        
+        #main_content { display: none; }
     </style>
 </head>
 <body>
 
+<div class="header-azul">SICEUDO</div>
+
 <div class="container">
-    <div class="header">
-        <h1>SICEUDO - NÚCLEO ANZOÁTEGUI</h1>
+    <div id="login_section" style="text-align: center; padding-top: 50px;">
+        <h3 style="color: #004587;">Control de Acceso</h3>
+        <input type="text" id="cedula" placeholder="Usuario (Cédula)" style="padding: 10px; width: 80%; border: 1px solid #ccc; margin-bottom: 10px;"><br>
+        <button onclick="entrar()" style="padding: 10px 40px; background: #004587; color: white; border: none; font-weight: bold; cursor: pointer;">Entrar</button>
     </div>
 
-    <div id="login_section" style="text-align: center; padding: 60px;">
-        <h3 style="color: #333;">Control de Acceso (Usuario Unificado)</h3>
-        <input type="text" id="user_input" placeholder="Cédula de Identidad" style="padding: 12px; margin: 8px; width: 250px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;"><br>
-        <input type="password" id="pass_input" placeholder="Clave SICEUDO" style="padding: 12px; margin: 8px; width: 250px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;"><br>
-        <button onclick="validarUDO()" style="padding: 12px 24px; background: #005596; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 15px; font-weight: bold;">Entrar al Sistema</button>
-    </div>
-
-    <div id="main_content" style="display:none;">
-        <div class="cuadro-datos">
-            <span class="label-dato">Nro. de Cédula:</span> 32131419 &nbsp;&nbsp;
-            <span class="label-dato">Nombre:</span> ARREAZA ALEJANDRO<br>
-            <span class="label-dato">Núcleo:</span> ANZOÁTEGUI &nbsp;&nbsp;
-            <span class="label-dato">Carrera:</span> INGENIERÍA MECÁNICA
+    <div id="main_content">
+        <div class="info-box">
+            <span class="label">Nro. de Cédula:</span> 32131419 &nbsp; <span class="label">Nombre:</span> ARREAZA ALEJANDRO<br>
+            <span class="label">Núcleo:</span> ANZOÁTEGUI &nbsp; <span class="label">Especialidad:</span> INGENIERÍA MECÁNICA
         </div>
 
-        <div class="menu-container">
-            <div class="menu-box bg-azul" onclick="mostrarSeccion('vista_inicio')"><div class="menu-icon">🏠</div><span>Inicio / Inscripción</span></div>
-            <div class="menu-box bg-verde" onclick="mostrarSeccion('vista_prosecucion')"><div class="menu-icon">📊</div><span>Historial de Calificaciones</span></div>
-            <div class="menu-box bg-naranja"><div class="menu-icon">📄</div><span>Solicitudes Estudiantiles</span></div>
-            <div class="menu-box bg-rojo"><div class="menu-icon">📑</div><span>Constancias Digitales</span></div>
-            <div class="menu-box bg-morado"><div class="menu-icon">🛠️</div><span>Servicios Especiales</span></div>
-            <div class="menu-box bg-cyan"><div class="menu-icon">🗝️</div><span>Cambio de Clave</span></div>
+        <div class="seccion-titulo">Inscripción de Estudiantes Regulares</div>
+
+        <div class="btn-container">
+            <div class="btn-menu btn-naranja">(1) LOGIN</div>
+            <div class="btn-menu btn-verde">(2) REGISTRO</div>
+            <div class="btn-menu btn-cyan">(3) CONSTANCIA</div>
         </div>
 
-        <div id="vista_inicio" style="display:none;">
-            <h3>Inscripción Semestre 2025-3</h3>
-            <div class="nota-informativa"><strong>Atención:</strong> El proceso de inscripción para el semestre actual está activo. Por favor revise el cronograma oficial.</div>
+        <div class="seccion-titulo">Inscripción Regular</div>
+
+        <div class="nota-amarilla">
+            <strong>Nota:</strong> Semestre 3-2025 activo.
         </div>
 
-        <div id="vista_prosecucion" style="display:none;">
-            <h3 style="background: #f8f8f8; padding: 10px; color: #005596; border-left: 5px solid #005596;">Histórico de Calificaciones</h3>
-            
-            <div style="text-align: right; margin-bottom: 15px;">
-                <button class="btn-pdf">📄 Generar PDF / Imprimir</button>
-            </div>
+        <table class="tabla">
+            <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
+            <tr class="periodo-header"><td colspan="5">Periodo: 2023-3</td></tr>
+            <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
+            <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
+            <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
+            <tr class="periodo-header"><td colspan="5">Periodo: 2024-3</td></tr>
+            <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
+            <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
+            <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
+            <tr class="periodo-header"><td colspan="5">Periodo: 2025-3</td></tr>
+            <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
+            <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
+            <tr><td>2025-3</td><td>0082833</td><td>INTRO. A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
+        </table>
 
-            <table class="tabla-prosecucion">
-                <thead><tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr></thead>
-                <tbody>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2023-3</td></tr>
-                    <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
-                    <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
-                    <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2024-3</td></tr>
-                    <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
-                    <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
-                    <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. PARA EL APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
-                    <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>06</td><td>06 SEIS</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-1</td></tr>
-                    <tr><td>2025-1</td><td>0051324</td><td>FISICA</td><td>01</td><td>04 CUATRO</td></tr>
-                    <tr><td>2025-1</td><td>0612132</td><td>INTRODUCCION A LA INGENIERIA MECANICA</td><td>01</td><td>07 SIETE</td></tr>
-                    <tr><td>2025-1</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>04 CUATRO</td></tr>
-                    <tr><td>2025-1</td><td>0081824</td><td>MATEMATICAS II</td><td>17</td><td>05 CINCO</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-2</td></tr>
-                    <tr><td>2025-2</td><td>0051324</td><td>FISICA I</td><td>02</td><td>08 OCHO</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-3</td></tr>
-                    <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
-                    <tr><td>2025-3</td><td>0052131</td><td>LABORATORIO DE FISICA I</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0082833</td><td>INTRODUCCION A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
-                </tbody>
-            </table>
+        <div class="resumen-header" style="margin-top:20px;">Resumen Académico</div>
+        <table class="resumen-tabla">
+            <tr style="color: #666; background: #fdfdfd;">
+                <td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td>
+            </tr>
+            <tr style="font-weight: bold; border-top: 1px solid #ccc;">
+                <td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td>
+            </tr>
+        </table>
 
-            <table style="width: 100%; border-collapse: collapse; margin-top: 25px; font-size: 12px; background: #eee; border: 1px solid #ccc; text-align: center;">
-                <tr style="background: #ddd; font-weight: bold;"><td colspan="7">Resumen Académico (Carrera Actual)</td></tr>
-                <tr style="background: #fff;"><td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td></tr>
-                <tr style="background: #fff; font-weight: bold;"><td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td></tr>
-            </table>
-            <div style="text-align: center; font-weight: bold; margin-top: 15px; font-size: 14px; color: #333;">Promedio General de Notas: 5,12</div>
-            <div style="text-align: center; font-size: 11px; margin-top: 30px; color: #666; border-top: 1px solid #ddd; padding-top: 10px;">*** ESTE DOCUMENTO ES SOLO DE CARÁCTER INFORMATIVO ***</div>
+        <div class="promedio">Promedio Gral. de Notas: 5,12</div>
+
+        <div class="footer-nota">
+            *** ESTE DOCUMENTO ES SOLO DE CARÁCTER INFORMATIVO ***
         </div>
     </div>
 </div>
 
 <script>
-    function validarUDO() {
-        var u = document.getElementById("user_input").value;
-        if(u === "32131419") {
+    function entrar() {
+        var c = document.getElementById("cedula").value;
+        if(c === "32131419") {
             document.getElementById("login_section").style.display = "none";
             document.getElementById("main_content").style.display = "block";
-            mostrarSeccion('vista_prosecucion'); // Muestra las notas directamente al entrar
         } else {
-            alert("Cédula o clave incorrectos. Intente de nuevo.");
+            alert("Cédula incorrecta");
         }
-    }
-
-    function mostrarSeccion(id) {
-        // Oculta todas las secciones
-        document.getElementById('vista_inicio').style.display = 'none';
-        document.getElementById('vista_prosecucion').style.display = 'none';
-        
-        // Muestra la sección seleccionada
-        document.getElementById(id).style.display = 'block';
     }
 </script>
 
