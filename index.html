@@ -13,19 +13,15 @@
         
         h3 { background: #f8f8f8; color: #005596; font-size: 10px; padding: 4px; border: 1px solid #ddd; margin-top: 10px; border-left: 4px solid #005596; }
         
-        /* Menú Estudiante Lateral */
         .menu-real { list-style: none; padding: 0; margin: 5px 0; border: 1px solid #eee; background: #f9f9f9; }
         .menu-real li { padding: 4px 8px; border-bottom: 1px solid #eee; color: #005596; cursor: pointer; }
-        .menu-real li:hover { background: #fff; color: #d35400; }
         .menu-tit { color: #005596; font-weight: bold; margin-top: 5px; padding-left: 5px; font-size: 10px; background: #eee; padding: 2px 5px; }
 
         /* Cuadros Centrales */
         .pasos-container { display: flex; justify-content: space-between; margin: 15px 0; }
         .paso { width: 23%; padding: 15px 2px; text-align: center; color: white; font-weight: bold; font-size: 9px; border-radius: 2px; }
         
-        /* Cuadro de Datos Estudiante Abajo a la Izquierda */
         .cuadro-datos { border: 1px solid #ccc; padding: 8px; margin-top: 15px; background: #fcfcfc; font-size: 9px; line-height: 1.3; }
-        .label-dato { color: #666; display: block; margin-top: 2px; }
         .valor-dato { font-weight: bold; color: #333; display: block; margin-bottom: 4px; }
 
         .nota-amarilla { background: #ffffcc; border: 1px solid #e6db55; padding: 10px; margin: 10px 0; font-size: 10px; }
@@ -55,18 +51,10 @@
             <ul class="menu-real">
                 <li onclick="irInicio()">Inicio</li>
                 <div class="menu-tit">Admisión</div>
-                <li>» Actualizar Datos</li>
                 <li>» Inscripción Regulares</li>
-                <li>» Citas de Inscripción</li>
-                <div class="menu-tit">Reportes</div>
-                <li>» Taquilla DACE</li>
                 <div class="menu-tit">Consultas</div>
                 <li style="background: #fff8e1; font-weight: bold;" onclick="irProsecucion()">» Prosecución Académica</li>
-                <div class="menu-tit">Solicitudes</div>
-                <li>» Carnet</li>
-                <li>» Retiro Total</li>
                 <div class="menu-tit">Administración</div>
-                <li>» Cambiar Contraseña</li>
                 <li style="color:red; font-weight:bold;" onclick="location.reload()">Cerrar Sesión</li>
             </ul>
         </div>
@@ -83,10 +71,9 @@
         </div>
 
         <div id="datos_estudiante_box" class="cuadro-datos">
-            <span class="label-dato">Nro. de Cédula</span><span class="valor-dato">32131419</span>
-            <span class="label-dato">Nombre</span><span class="valor-dato">ARREAZA BARRETO LUIS ALEJANDRO</span>
-            <span class="label-dato">Núcleo</span><span class="valor-dato">ANZOÁTEGUI</span>
-            <span class="label-dato">Especialidad</span><span class="valor-dato">1. INGENIERIA MECANICA (ACTIVO)</span>
+            <span class="label-dato">Nro. de Cédula:</span><span class="valor-dato">32131419</span>
+            <span class="label-dato">Nombre:</span><span class="valor-dato">ARREAZA BARRETO LUIS ALEJANDRO</span>
+            <span class="label-dato">Especialidad:</span><span class="valor-dato">1. INGENIERIA MECANICA (ACTIVO)</span>
         </div>
     </div>
 
@@ -99,45 +86,29 @@
                 <div class="paso" style="background: #2aabd2;">(3)<br>IMPRIME TU CONSTANCIA</div>
                 <div class="paso" style="background: #e67e22;">(4)<br>CIERRA TU SESIÓN</div>
             </div>
-            <h3>Inscripción Regular</h3>
-            <div class="nota-amarilla">
-                <strong>Nota:</strong> Semestre 3-2025 activo. La inscripción regular se dará según cita asignada.
-            </div>
-            <h3>Punto de Contacto</h3>
-            <p>Consultas: <b style="color:red;">compu.anzoategui@udo.edu.ve</b></p>
+            <div class="nota-amarilla"><strong>Nota:</strong> Semestre 3-2025 activo.</div>
         </div>
 
         <div id="vista_prosecucion">
-            <h3>Prosecución Académica - Historial de Notas</h3>
+            <h3>Prosecución Académica - Historial</h3>
             <table class="tabla-prosecucion">
                 <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
                 
                 <tr class="periodo-row"><td colspan="5">PERIODO: 2023-3</td></tr>
                 <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
-                <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
+                <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>06 SEIS</td></tr>
                 <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
 
                 <tr class="periodo-row"><td colspan="5">PERIODO: 2024-3</td></tr>
-                <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
                 <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
-                <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
-                <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>06</td><td>06 SEIS</td></tr>
-
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2025-1</td></tr>
-                <tr><td>2025-1</td><td>0051324</td><td>FISICA I</td><td>01</td><td>04 CUATRO</td></tr>
-                <tr><td>2025-1</td><td>0612132</td><td>INTROD. ING. MECANICA</td><td>01</td><td>07 SIETE</td></tr>
-                <tr><td>2025-1</td><td>0612232</td><td>CIENCIAS MATERIALES</td><td>01</td><td>04 CUATRO</td></tr>
-                <tr><td>2025-1</td><td>0081824</td><td>MATEMATICAS II</td><td>17</td><td>05 CINCO</td></tr>
-
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2025-2</td></tr>
-                <tr><td>2025-2</td><td>0051324</td><td>FISICA I</td><td>02</td><td>08 OCHO</td></tr>
+                <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>08</td><td>06 SEIS</td></tr>
 
                 <tr class="periodo-row"><td colspan="5">PERIODO: 2025-3</td></tr>
-                <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
-                <tr><td>2025-3</td><td>0052131</td><td>LAB. FISICA I</td><td>01</td><td>09 NUEVE</td></tr>
-                <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS MATERIALES</td><td>01</td><td>09 NUEVE</td></tr>
-                <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
-                <tr><td>2025-3</td><td>0082833</td><td>INTRO. PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
+                <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>08 OCHO</td></tr>
+                <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>07 SIETE</td></tr>
+                <tr><td>2025-3</td><td>0052131</td><td>LAB. DE FISICA I</td><td>01</td><td>08 OCHO</td></tr>
+                <tr><td>2025-3</td><td>0082833</td><td>INTRO. A LA PROGRAMACION</td><td>01</td><td>07 SIETE</td></tr>
+                <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>10 DIEZ</td></tr>
             </table>
 
             <div style="background: #eee; padding: 10px; border: 1px solid #ccc; margin-top: 15px; text-align: center;">
