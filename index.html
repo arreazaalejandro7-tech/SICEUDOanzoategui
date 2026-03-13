@@ -80,26 +80,72 @@
             <span class="label-dato">Núcleo</span><span class="valor-dato">ANZOÁTEGUI</span>
             <span class="label-dato">Especialidad</span><span class="valor-dato">1. INGENIERIA MECANICA (ACTIVO)</span>
         </div>
+            </div>
     </div>
 
     <div class="col-center">
         <div id="vista_inicio">
             <h3>Inscripción de Estudiantes Regulares</h3>
             <div class="pasos-container">
-                <div class="paso" style="background: #d35400;">(1) LOGIN</div>
-                <div class="paso" style="background: #77b300;">(2) REGISTRO</div>
-                <div class="paso" style="background: #2aabd2;">(3) CONSTANCIA</div>
+                <div class="paso" style="background: #005596; color: white;">(1) LOGIN</div>
+                <div class="paso" style="background: #7cb342; color: white;">(2) REGISTRO</div>
+                <div class="paso" style="background: #00acc1; color: white;">(3) CONSTANCIA</div>
             </div>
             <h3>Inscripción Regular</h3>
-            <div class="nota-amarilla"><strong>Nota:</strong> Semestre 3-2025 activo.</div>
+            <div style="background: #fff9c4; padding: 10px; border: 1px solid #fbc02d; margin-bottom: 15px; font-size: 13px;">
+                <strong>Nota:</strong> El proceso de inscripción para el semestre 2025-3 está activo.
+            </div>
         </div>
 
-        <div id="vista_prosecucion">
-            <h3>Histórico de Calificaciones</h3>
-            <table class="tabla-prosecucion">
-                <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
+        <div id="vista_prosecucion" style="display:none;">
+            <h3 style="background: #f8f8f8; padding: 5px; color: #005596; border-left: 5px solid #005596;">Histórico de Calificaciones</h3>
+            
+            <div style="text-align: right; margin-bottom: 10px;">
+                <button onclick="window.print()" style="background-color: #d32f2f; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                    <span style="margin-right: 5px; font-size: 16px;">📄</span> IMPRIMIR PDF
+                </button>
+            </div>
+
+            <table class="tabla-prosecucion" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <tr style="background: #005596; color: white; text-align: center;">
+                    <th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th>
+                </tr>
+             <style>
+                .solo-print { display: none; }
+                @media print {
+                    .solo-print { display: block !important; }
+                    button { display: none !important; } /* Esconde el botón al imprimir */
+                }
+            </style>
+
+            <div class="solo-print" style="margin-top: 20px; border-bottom: 2px solid #005596; padding-bottom: 10px; margin-bottom: 20px; font-family: Arial, sans-serif;">
+                <table style="width: 100%; border: none;">
+                    <tr>
+                        <td style="width: 20%; text-align: center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Logo_UDO.svg/1200px-Logo_UDO.svg.png" style="width: 70px;">
+                        </td>
+                        <td style="text-align: center;">
+                            <h2 style="margin: 0; color: #005596; font-size: 16px;">UNIVERSIDAD DE ORIENTE</h2>
+                            <h3 style="margin: 0; font-size: 13px;">NÚCLEO DE ANZOÁTEGUI</h3>
+                            <h4 style="margin: 0; font-size: 11px;">HISTÓRICO DE CALIFICACIONES</h4>
+                        </td>
+                        <td style="width: 20%; text-align: right; font-size: 9px; vertical-align: bottom;">
+                            Fecha: 13/03/2026
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin-top: 10px; background: #f0f0f0; padding: 8px; border: 1px solid #ccc; font-size: 11px;">
+                    <strong>ALUMNO:</strong> ARREAZA ALEJANDRO &nbsp;&nbsp;&nbsp; <strong>CÉDULA:</strong> V-32.131.419<br>
+                    <strong>CARRERA:</strong> INGENIERÍA MECÁNICA &nbsp;&nbsp;&nbsp; <strong>NÚCLEO:</strong> ANZOÁTEGUI
+                </div>
+            </div>
                 
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2023-3</td></tr>
+<table class="tabla-prosecucion" style="width: 100%; border-collapse: collapse;">
+    <tr style="background: #005596; color: white; text-align: center; font-weight: bold;">
+    <td>PERIODO</td><td>CÓDIGO</td><td>ASIGNATURA</td><td>SEC.</td><td>NOTA</td>
+    </tr>
+    
+
                 <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>28</td><td>07 SIETE</td></tr>
                 <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>06 SEIS</td></tr>
                 <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
