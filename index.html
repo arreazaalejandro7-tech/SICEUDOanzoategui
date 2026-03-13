@@ -11,13 +11,11 @@
         .header h1 { color: #005596; margin: 0; font-size: 22px; }
         .cuadro-datos { background: #f9f9f9; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; font-size: 13px; }
         .label-dato { font-weight: bold; color: #005596; margin-right: 5px; }
-        .col-center { padding: 10px; }
-        .pasos-container { display: flex; justify-content: space-between; margin-bottom: 20px; }
-        .paso { padding: 8px; border-radius: 4px; font-size: 11px; flex: 1; text-align: center; margin: 0 2px; }
         .tabla-prosecucion { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
         .tabla-prosecucion th, .tabla-prosecucion td { border: 1px solid #ccc; padding: 6px; text-align: center; }
         .periodo-row { background: #e3f2fd; font-weight: bold; color: #005596; text-align: left !important; }
-        .btn-pdf { background-color: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center; cursor: default; }
+        .pasos-container { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .paso { padding: 8px; border-radius: 4px; font-size: 11px; flex: 1; text-align: center; margin: 0 2px; }
     </style>
 </head>
 <body>
@@ -42,68 +40,57 @@
             <span class="label-dato">Especialidad:</span> INGENIERÍA MECÁNICA
         </div>
 
-        <div class="col-center">
-            <div id="vista_inicio">
-                <h3>Inscripción de Estudiantes Regulares</h3>
-                <div class="pasos-container">
-                    <div class="paso" style="background: #005596; color: white;">(1) LOGIN</div>
-                    <div class="paso" style="background: #7cb342; color: white;">(2) REGISTRO</div>
-                    <div class="paso" style="background: #00acc1; color: white;">(3) CONSTANCIA</div>
-                </div>
-                <div style="background: #fff9c4; padding: 10px; border: 1px solid #fbc02d; margin-bottom: 15px; font-size: 13px;">
-                    <strong>Nota:</strong> Proceso de inscripción 2025-3 activo.
-                </div>
+        <div id="vista_inicio">
+            <h3>Inscripción de Estudiantes Regulares</h3>
+            <div class="pasos-container">
+                <div class="paso" style="background: #005596; color: white;">(1) LOGIN</div>
+                <div class="paso" style="background: #7cb342; color: white;">(2) REGISTRO</div>
+                <div class="paso" style="background: #00acc1; color: white;">(3) CONSTANCIA</div>
+            </div>
+        </div>
+
+        <div id="vista_prosecucion">
+            <h3 style="background: #f8f8f8; padding: 5px; color: #005596; border-left: 5px solid #005596;">Histórico de Calificaciones</h3>
+            
+            <div style="text-align: right; margin-bottom: 10px;">
+                <div style="background-color: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-flex; align-items: center;">📄 PDF</div>
             </div>
 
-            <div id="vista_prosecucion">
-                <h3 style="background: #f8f8f8; padding: 5px; color: #005596; border-left: 5px solid #005596;">Histórico de Calificaciones</h3>
-                
-                <div style="text-align: right; margin-bottom: 10px;">
-                    <div class="btn-pdf"><span>📄</span> &nbsp; PDF</div>
-                </div>
+            <table class="tabla-prosecucion">
+                <tr style="background: #005596; color: white;">
+                    <th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th>
+                </tr>
+                <tr class="periodo-row"><td colspan="5">Periodo: 2023-3</td></tr>
+                <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
+                <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
+                <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
+                <tr class="periodo-row"><td colspan="5">Periodo: 2024-3</td></tr>
+                <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
+                <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
+                <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. PARA EL APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
+                <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>06</td><td>06 SEIS</td></tr>
+                <tr class="periodo-row"><td colspan="5">Periodo: 2025-1</td></tr>
+                <tr><td>2025-1</td><td>0051324</td><td>FISICA</td><td>01</td><td>04 CUATRO</td></tr>
+                <tr><td>2025-1</td><td>0612132</td><td>INTRODUCCION A LA INGENIERIA MECANICA</td><td>01</td><td>07 SIETE</td></tr>
+                <tr><td>2025-1</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>04 CUATRO</td></tr>
+                <tr><td>2025-1</td><td>0081824</td><td>MATEMATICAS II</td><td>17</td><td>05 CINCO</td></tr>
+                <tr class="periodo-row"><td colspan="5">Periodo: 2025-2</td></tr>
+                <tr><td>2025-2</td><td>0051324</td><td>FISICA I</td><td>02</td><td>08 OCHO</td></tr>
+                <tr class="periodo-row"><td colspan="5">Periodo: 2025-3</td></tr>
+                <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
+                <tr><td>2025-3</td><td>0052131</td><td>LABORATORIO DE FISICA I</td><td>01</td><td>09 NUEVE</td></tr>
+                <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>09 NUEVE</td></tr>
+                <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
+                <tr><td>2025-3</td><td>0082833</td><td>INTRODUCCION A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
+            </table>
 
-                <table class="tabla-prosecucion">
-                    <tr style="background: #005596; color: white;">
-                        <th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th>
-                    </tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2023-3</td></tr>
-                    <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
-                    <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>04 SEIS</td></tr>
-                    <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2024-3</td></tr>
-                    <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
-                    <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
-                    <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. PARA EL APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
-                    <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>06</td><td>06 SEIS</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-1</td></tr>
-                    <tr><td>2025-1</td><td>0051324</td><td>FISICA</td><td>01</td><td>04 CUATRO</td></tr>
-                    <tr><td>2025-1</td><td>0612132</td><td>INTRODUCCION A LA INGENIERIA MECANICA</td><td>01</td><td>07 SIETE</td></tr>
-                    <tr><td>2025-1</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>04 CUATRO</td></tr>
-                    <tr><td>2025-1</td><td>0081824</td><td>MATEMATICAS II</td><td>17</td><td>05 CINCO</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-2</td></tr>
-                    <tr><td>2025-2</td><td>0051324</td><td>FISICA I</td><td>02</td><td>08 OCHO</td></tr>
-                    <tr class="periodo-row"><td colspan="5">Periodo: 2025-3</td></tr>
-                    <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>10 DIEZ</td></tr>
-                    <tr><td>2025-3</td><td>0052131</td><td>LABORATORIO DE FISICA I</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>09 NUEVE</td></tr>
-                    <tr><td>2025-3</td><td>0082833</td><td>INTRODUCCION A LA PROGRAMACION</td><td>01</td><td>10 DIEZ</td></tr>
-                </table>
-
-                <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 11px; background: #eee; border: 1px solid #ccc;">
-                    <tr style="text-align: center; background: #ddd; font-weight: bold;">
-                        <td colspan="7">Resumen Académico</td>
-                    </tr>
-                    <tr style="text-align: center; background: #fff;">
-                        <td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td>
-                    </tr>
-                    <tr style="text-align: center; background: #fff; font-weight: bold;">
-                        <td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td>
-                    </tr>
-                </table>
-                <div style="text-align: center; font-weight: bold; margin-top: 10px; font-size: 13px;">Promedio Gral: 5,12</div>
-                <div style="text-align: center; font-size: 10px; margin-top: 20px; color: #666;">*** ESTE DOCUMENTO ES SOLO DE CARÁCTER INFORMATIVO ***</div>
-            </div>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 11px; background: #eee; border: 1px solid #ccc;">
+                <tr style="text-align: center; background: #ddd; font-weight: bold;"><td colspan="7">Resumen Académico</td></tr>
+                <tr style="text-align: center; background: #fff;"><td></td><td>Inscritos</td><td>Cursados</td><td>Aprob</td><td>Reprob</td><td>Retirados</td><td>ET</td></tr>
+                <tr style="text-align: center; background: #fff; font-weight: bold;"><td>Asignaturas</td><td>17</td><td>17</td><td>14</td><td>3</td><td>0</td><td>0</td></tr>
+            </table>
+            <div style="text-align: center; font-weight: bold; margin-top: 10px; font-size: 13px;">Promedio Gral: 5,12</div>
+            <div style="text-align: center; font-size: 10px; margin-top: 20px; color: #666;">*** ESTE DOCUMENTO ES SOLO DE CARÁCTER INFORMATIVO ***</div>
         </div>
     </div>
 </div>
@@ -115,7 +102,7 @@
             document.getElementById("login_section").style.display = "none";
             document.getElementById("main_content").style.display = "block";
         } else {
-            alert("Usuario o clave incorrectos");
+            alert("Cédula incorrecta");
         }
     }
 </script>
