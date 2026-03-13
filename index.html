@@ -7,121 +7,118 @@
     <style>
         body { font-family: Arial, Helvetica, sans-serif; margin: 0; background-color: #fff; font-size: 11px; color: #333; }
         header { background: linear-gradient(to bottom, #005596, #003366); color: white; padding: 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f0ad4e; }
-        .wrapper { display: flex; flex-direction: row; width: 100%; max-width: 1200px; margin: auto; }
+        .wrapper { display: flex; flex-direction: row; width: 100%; }
         .col-left { width: 190px; background: #fff; padding: 10px; border-right: 1px dotted #ccc; flex-shrink: 0; }
         .col-center { flex: 1; padding: 15px; border-right: 1px dotted #ccc; min-height: 100vh; }
-        h3 { background: #f8f8f8; color: #005596; font-size: 10px; padding: 4px; border: 1px solid #ddd; margin-top: 10px; border-left: 4px solid #005596; }
-        .menu-real { list-style: none; padding: 0; margin: 5px 0; border: 1px solid #eee; background: #f9f9f9; }
+        h3 { background: #f8f8f8; color: #005596; font-size: 10px; padding: 4px; border: 1px solid #ddd; border-left: 4px solid #005596; margin-top: 10px; }
+        .menu-real { list-style: none; padding: 0; margin: 5px 0; border: 1px solid #eee; }
         .menu-real li { padding: 4px 8px; border-bottom: 1px solid #eee; color: #005596; cursor: pointer; }
-        .menu-tit { color: #005596; font-weight: bold; margin-top: 5px; padding-left: 5px; font-size: 10px; background: #eee; padding: 2px 5px; }
-        .pasos-container { display: flex; justify-content: space-between; margin: 15px 0; }
-        .paso { width: 23%; padding: 15px 2px; text-align: center; color: white; font-weight: bold; font-size: 9px; border-radius: 2px; }
+        .menu-tit { color: #005596; font-weight: bold; margin-top: 5px; padding-left: 5px; background: #eee; padding: 2px 5px; }
         .cuadro-datos { border: 1px solid #ccc; padding: 8px; margin-top: 15px; background: #fcfcfc; font-size: 9px; line-height: 1.3; }
         .valor-dato { font-weight: bold; color: #333; display: block; margin-bottom: 4px; }
-        .tabla-prosecucion { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 9px; }
-        .tabla-prosecucion th { background: #005596; color: white; border: 1px solid #ccc; padding: 5px; }
-        .tabla-prosecucion td { border: 1px solid #ccc; padding: 5px; text-align: center; color: #333; }
-        .periodo-row { background: #f2f2f2; font-weight: bold; color: #005596; text-align: left !important; padding-left: 10px; }
-        #menu_estudiante, #datos_estudiante_box, #vista_prosecucion { display: none; }
+        .t-prosecucion { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 10px; }
+        .t-prosecucion th { background-color: #005596; color: white; padding: 6px; border: 1px solid #ccc; }
+        .t-prosecucion td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+        .periodo-header { background-color: #f2f2f2; color: #005596; font-weight: bold; text-align: left !important; padding-left: 10px; }
+        .resumen-caja { background: #eee; border: 1px solid #ccc; margin-top: 15px; padding: 10px; text-align: center; }
+        .informativo { background: yellow; border: 1px solid #f0ad4e; padding: 5px; font-weight: bold; font-size: 10px; margin-top: 5px; display: inline-block; width: 90%; }
+        #area_estudiante, #vista_prosecucion { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="font-weight: bold; font-size: 11px; line-height: 1.2;">UNIVERSIDAD DE ORIENTE<br>NÚCLEO DE ANZOÁTEGUI<br>DACE</div>
+    <div style="font-weight: bold; font-size: 11px;">UNIVERSIDAD DE ORIENTE<br>NÚCLEO DE ANZOÁTEGUI</div>
     <div style="font-size: 24px; font-weight: bold;">SICEUDO</div>
 </header>
 
 <div class="wrapper">
     <div class="col-left">
         <h3>Menú Principal</h3>
-        <div id="menu_visitante" style="padding: 5px; color: #666; background: #eee;">Inicio</div>
+        <ul id="menu_visitante" style="list-style:none; padding:0;"><li>Inicio</li></ul>
         <div id="menu_estudiante">
             <ul class="menu-real">
-                <li onclick="irInicio()">Inicio</li>
+                <li onclick="location.reload()">Inicio</li>
                 <div class="menu-tit">Consultas</div>
-                <li style="background: #fff8e1; font-weight: bold;" onclick="irProsecucion()">» Prosecución Académica</li>
+                <li style="background: #fff8e1; font-weight: bold;" onclick="verProsecucion()">» Prosecución Académica</li>
                 <div class="menu-tit">Administración</div>
                 <li style="color:red; font-weight:bold;" onclick="location.reload()">Cerrar Sesión</li>
             </ul>
         </div>
         <div id="login_box">
             <h3>Iniciar Sesión</h3>
-            <div style="border:1px solid #ccc; padding:8px; background:#fcfcfc;">
-                <label>Cédula:</label><input type="text" id="user_in" style="width:90%;"><br>
-                <label>Clave:</label><input type="password" id="pass_in" style="width:90%;"><br>
-                <center><button onclick="entrarSiceudo()" style="font-size:10px; margin-top:5px;">Ingresar</button></center>
+            <div style="border:1px solid #ccc; padding:8px;">
+                <label>Cédula:</label><input type="text" id="ci_in" style="width:90%;"><br>
+                <center><button onclick="entrar()" style="margin-top:5px;">Entrar</button></center>
             </div>
         </div>
-        <div id="datos_estudiante_box" class="cuadro-datos">
-            <span class="label-dato">Cédula:</span><span class="valor-dato">32131419</span>
-            <span class="label-dato">Nombre:</span><span class="valor-dato">ARREAZA BARRETO LUIS ALEJANDRO</span>
-            <span class="label-dato">Especialidad:</span><span class="valor-dato">1. INGENIERIA MECANICA (ACTIVO)</span>
+        <div id="area_estudiante" class="cuadro-datos">
+            <span style="color:#666;">Cédula:</span> <span class="valor-dato">32131419</span>
+            <span style="color:#666;">Nombre:</span> <span class="valor-dato">ARREAZA BARRETO LUIS ALEJANDRO</span>
+            <span style="color:#666;">Especialidad:</span> <span class="valor-dato">INGENIERIA MECANICA (ACTIVO)</span>
         </div>
     </div>
 
     <div class="col-center">
         <div id="vista_inicio">
             <h3>Inscripción de Estudiantes Regulares</h3>
-            <div class="pasos-container">
-                <div class="paso" style="background: #d35400;">(1) LOGIN</div>
-                <div class="paso" style="background: #77b300;">(2) REGISTRO</div>
-                <div class="paso" style="background: #2aabd2;">(3) CONSTANCIA</div>
-                <div class="paso" style="background: #e67e22;">(4) CIERRE</div>
-            </div>
-            <div style="background:#ffffcc; border:1px solid #e6db55; padding:10px;"><strong>Nota:</strong> Semestre 3-2025 activo.</div>
+            <p>Bienvenido al SICEUDO.</p>
         </div>
 
         <div id="vista_prosecucion">
-            <h3>Prosecución Académica - Historial</h3>
-            <table class="tabla-prosecucion">
+            <h3 style="border-left: 4px solid #005596; background: #f8f8f8; padding: 5px;">Prosecución Académica - Historial</h3>
+            <table class="t-prosecucion">
                 <tr><th>PERIODO</th><th>CÓDIGO</th><th>ASIGNATURA</th><th>SEC.</th><th>NOTA</th></tr>
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2023-3</td></tr>
+                
+                <tr class="periodo-header"><td colspan="5">PERIODO: 2023-3</td></tr>
                 <tr><td>2023-3</td><td>7001813</td><td>INGLES I</td><td>20</td><td>07 SIETE</td></tr>
                 <tr><td>2023-3</td><td>0101814</td><td>QUIMICA I</td><td>22</td><td>06 SEIS</td></tr>
                 <tr><td>2023-3</td><td>0081814</td><td>MATEMATICAS I</td><td>14</td><td>03 TRES</td></tr>
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2024-3</td></tr>
+
+                <tr class="periodo-header"><td colspan="5">PERIODO: 2024-3</td></tr>
                 <tr><td>2024-3</td><td>7001823</td><td>INGLES II</td><td>23</td><td>07 SIETE</td></tr>
                 <tr><td>2024-3</td><td>0081814</td><td>MATEMATICAS I</td><td>17</td><td>08 OCHO</td></tr>
-                <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>10</td><td>07 SIETE</td></tr>
-                <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>06</td><td>06 SEIS</td></tr>
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2025-1</td></tr>
+                <tr><td>2024-3</td><td>0091012</td><td>DES. DEST. APRENDIZAJE</td><td>18</td><td>07 SIETE</td></tr>
+                <tr><td>2024-3</td><td>0101824</td><td>QUIMICA II</td><td>08</td><td>06 SEIS</td></tr>
+
+                <tr class="periodo-header"><td colspan="5">PERIODO: 2025-1</td></tr>
                 <tr><td>2025-1</td><td>0051324</td><td>FISICA</td><td>01</td><td>04 CUATRO</td></tr>
                 <tr><td>2025-1</td><td>0612132</td><td>INTROD. ING. MECANICA</td><td>01</td><td>07 SIETE</td></tr>
                 <tr><td>2025-1</td><td>0612232</td><td>CIENCIAS MATERIALES</td><td>01</td><td>04 CUATRO</td></tr>
                 <tr><td>2025-1</td><td>0081824</td><td>MATEMATICAS II</td><td>17</td><td>05 CINCO</td></tr>
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2025-2</td></tr>
+
+                <tr class="periodo-header"><td colspan="5">PERIODO: 2025-2</td></tr>
                 <tr><td>2025-2</td><td>0051324</td><td>FISICA I</td><td>02</td><td>08 OCHO</td></tr>
-                <tr class="periodo-row"><td colspan="5">PERIODO: 2025-3</td></tr>
+
+                <tr class="periodo-header"><td colspan="5">PERIODO: 2025-3</td></tr>
                 <tr><td>2025-3</td><td>0082814</td><td>MATEMATICAS III</td><td>01</td><td>08 OCHO</td></tr>
-                <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS MATERIALES</td><td>01</td><td>07 SIETE</td></tr>
-                <tr><td>2025-3</td><td>0052131</td><td>LAB. FISICA I</td><td>01</td><td>08 OCHO</td></tr>
-                <tr><td>2025-3</td><td>0082833</td><td>INTROD. PROGRAMACION</td><td>01</td><td>07 SIETE</td></tr>
+                <tr><td>2025-3</td><td>0612232</td><td>CIENCIAS DE LOS MATERIALES</td><td>01</td><td>07 SIETE</td></tr>
+                <tr><td>2025-3</td><td>0052131</td><td>LAB. DE FISICA I</td><td>01</td><td>08 OCHO</td></tr>
+                <tr><td>2025-3</td><td>0082833</td><td>INTRO. A LA PROGRAMACION</td><td>01</td><td>07 SIETE</td></tr>
                 <tr><td>2025-3</td><td>0662222</td><td>DIBUJO TECNICO</td><td>01</td><td>10 DIEZ</td></tr>
             </table>
-            <div style="background: #eee; padding: 10px; border: 1px solid #ccc; margin-top: 15px; text-align: center;">
-                <b>Resumen:</b> Inscritos: 17 | Cursados: 17 | Aprobados: 14 | Reprobados: 3 | <b>Promedio: 5,12</b>
+
+            <div class="resumen-caja">
+                <b>Resumen Académico:</b> Inscritos: 17 | Cursados: 17 | Aprobados: 14 | Reprobados: 3<br>
+                <b>Promedio General de Notas: 5,12</b><br>
+                <div class="informativo">*** DOCUMENTO INFORMATIVO ***</div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function entrarSiceudo() {
-        if(document.getElementById('user_in').value === "32131419") {
+    function entrar() {
+        if(document.getElementById('ci_in').value === "32131419") {
             document.getElementById('login_box').style.display = 'none';
             document.getElementById('menu_visitante').style.display = 'none';
             document.getElementById('menu_estudiante').style.display = 'block';
-            document.getElementById('datos_estudiante_box').style.display = 'block';
+            document.getElementById('area_estudiante').style.display = 'block';
         } else { alert("Cédula incorrecta"); }
     }
-    function irProsecucion() {
+    function verProsecucion() {
         document.getElementById('vista_inicio').style.display = 'none';
         document.getElementById('vista_prosecucion').style.display = 'block';
-    }
-    function irInicio() {
-        document.getElementById('vista_prosecucion').style.display = 'none';
-        document.getElementById('vista_inicio').style.display = 'block';
     }
 </script>
 </body>
